@@ -23,70 +23,8 @@
     class="min-h-screen dot-matrix flex flex-col font-sans antialiased selection:bg-white selection:text-black"
   >
     <!-- Navbar -->
-    <header class="fixed top-0 w-full z-50 glass">
-      <div
-        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
-      >
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 text-white">
-            <img
-              src="assets/images/nexgift-logo.svg"
-              alt="NexGift Logo"
-              class="w-full h-full object-contain"
-            />
-          </div>
-          <span class="font-semibold text-lg tracking-tight"
-            >NexGift<span class="text-brand-400 font-normal ml-1"
-              >by D&amp;S</span
-            ></span
-          >
-        </div>
-
-        <nav
-          class="hidden md:flex items-center gap-6 text-sm font-medium text-brand-300"
-        >
-          <a href="#" class="text-white transition-colors">Inicio</a>
-          <a
-            href="pages/configuracion.html"
-            class="hover:text-white transition-colors"
-            >Configurar</a
-          >
-          <a
-            href="pages/resumen.html"
-            class="hover:text-white transition-colors"
-            >Resumen</a
-          >
-          <a href="pages/sorteo.html" class="hover:text-white transition-colors"
-            >Sorteo</a
-          >
-        </nav>
-
-        <a
-          href="pages/configuracion.html"
-          class="hidden md:flex bg-white text-black px-4 py-1.5 rounded-full text-sm font-medium hover:bg-brand-200 transition-colors"
-        >
-          Iniciar Proyecto
-        </a>
-
-        <!-- Mobile Menu Btn -->
-        <button class="md:hidden text-white">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
-        </button>
-      </div>
-    </header>
+    <app-navbar></app-navbar>
+    <script src="assets/js/components/navbar.js"></script>
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col items-center justify-center mt-20 px-6">
@@ -236,23 +174,7 @@
     </main>
 
     <!-- Footer -->
-    <footer
-      class="border-t border-white/10 py-8 text-center text-sm text-brand-500 bg-black/50 backdrop-blur-md"
-    >
-      <div class="flex flex-col items-center justify-center gap-2">
-        <div class="flex items-center gap-2">
-          <span>NexGift &copy; 2026</span>
-          <span class="text-brand-700">&mdash;</span>
-          <span class="flex items-center gap-1.5">
-            Creado por 
-            <img src="assets/images/d&s-logo.svg" alt="D&S Logo" class="w-6 h-6 inline-block opacity-80" />
-            <span class="font-semibold text-brand-300">D&S</span>
-          </span>
-        </div>
-        <p class="font-light text-brand-600">
-          Universidad Autónoma de Aguascalientes &middot; Tecnologías Web
-        </p>
-      </div>
-    </footer>
+    <app-footer></app-footer>
+    <script src="assets/js/components/footer.js"></script>
   </body>
 </html>
