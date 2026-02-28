@@ -1,11 +1,132 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resumen del evento</title>
-  </head>
-  <body>
-  </body>
-</html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen - NexGift</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tema y Configuración -->
+    <script src="../assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 
+    <!-- Fuentes (Geist / Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/nexgift-logo.svg">
+</head>
+<body class="bg-black text-brand-50 font-sans min-h-screen flex flex-col dot-matrix">
+    
+    <!-- Navbar Web Component -->
+    <app-navbar></app-navbar>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow flex flex-col items-center justify-center px-6 pt-24 pb-12 w-full max-w-5xl mx-auto z-10 animate-fade-in-up">
+        
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Resumen del Evento</h1>
+            <p class="text-brand-400 text-lg max-w-2xl mx-auto">Verifica que todo esté correcto antes de realizar el sorteo.</p>
+        </div>
+
+        <!-- Banner de Error (Oculto por defecto) -->
+        <div id="res-error" class="hidden w-full max-w-3xl glass border border-red-500/30 text-red-200 rounded-xl p-4 mb-8 flex items-center gap-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span id="res-error-msg">Aún faltan datos para realizar el sorteo.</span>
+        </div>
+
+        <!-- Grid de Resumen -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
+            
+            <!-- Detalles -->
+            <div class="glass card-border rounded-2xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-6 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                    Detalles
+                </h3>
+                <div class="space-y-4 text-brand-300">
+                    <div>
+                        <span class="text-brand-500 text-xs uppercase tracking-wider block mb-1">Evento</span> 
+                        <strong id="res-nombre" class="text-white text-lg font-medium truncate block">-</strong>
+                    </div>
+                    <div>
+                        <span class="text-brand-500 text-xs uppercase tracking-wider block mb-1">Organizador</span> 
+                        <span id="res-org" class="text-white truncate block">-</span>
+                    </div>
+                    <div class="flex justify-between pt-2 border-t border-brand-800/50">
+                        <div>
+                            <span class="text-brand-500 text-xs uppercase tracking-wider block mb-1">Fecha</span> 
+                            <span id="res-fecha" class="text-white">-</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-brand-500 text-xs uppercase tracking-wider block mb-1">Presupuesto</span> 
+                            <span id="res-presupuesto" class="text-white font-medium">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Participantes -->
+            <div class="glass card-border rounded-2xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                    Participantes
+                </h3>
+                <div class="flex items-baseline gap-2 mb-6">
+                    <span id="res-total-part" class="text-5xl font-bold text-white">0</span>
+                    <span class="text-brand-400">personas</span>
+                </div>
+                <!-- Lista de muestra recortada -->
+                <div id="res-lista-part" class="text-sm text-brand-300 flex flex-wrap gap-2">
+                    <!-- Badges generados por JS -->
+                    <span class="text-brand-600 italic">No hay participantes aún.</span>
+                </div>
+            </div>
+
+            <!-- Exclusiones -->
+            <div class="glass card-border rounded-2xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                    Exclusiones
+                </h3>
+                <div class="flex items-baseline gap-2 mb-4">
+                    <span id="res-total-excl" class="text-5xl font-bold text-white">0</span>
+                    <span class="text-brand-400">reglas creadas</span>
+                </div>
+                <p class="text-brand-400 text-sm leading-relaxed">
+                    Estas reglas aseguran que las personas no se regalen mutuamente si decidieron excluirse.
+                </p>
+            </div>
+            
+        </div>
+
+        <!-- Botón de acción -->
+        <div class="mt-4 pb-12 w-full flex justify-center gap-4">
+            <a href="configuracion.html" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
+                Editar Datos
+            </a>
+            <a href="sorteo.html" id="btn-sorteo" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                Realizar Sorteo
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer Web Component -->
+    <app-footer></app-footer>
+
+    <!-- Componentes y Controladores -->
+    <script src="../assets/js/components/navbar.js"></script>
+    <script src="../assets/js/components/footer.js"></script>
+    <script type="module" src="../assets/js/controllers/ui-resumen.js"></script>
+</body>
+</html>
