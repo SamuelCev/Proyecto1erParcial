@@ -1,7 +1,5 @@
 /**
- * storage.js
  * Módulo encargado EXCLUSIVAMENTE de manejar las operaciones CRUD con LocalStorage.
- * Llave base: 'nexgift_data'
  */
 const STORAGE_KEY = 'nexgift_data';
 
