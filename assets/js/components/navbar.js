@@ -5,7 +5,6 @@ class Navbar extends HTMLElement {
 
     connectedCallback() {
         // Obtenemos la ruta base dependiendo de dónde estemos (raíz o dentro de /pages)
-        // Esto es necesario para que los links funcionen desde cualquier página
         const isRoot = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
         const basePath = isRoot ? '' : '../';
         
@@ -15,6 +14,11 @@ class Navbar extends HTMLElement {
         const isConfig = currentPath.includes('configuracion.html');
         const isResumen = currentPath.includes('resumen.html');
         const isSorteo = currentPath.includes('sorteo.html');
+
+        // Clases base para el efecto de subrayado animado
+        const baseLinkClass = "relative py-1 transition-colors after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-white after:transition-transform after:duration-300 hover:text-white hover:after:scale-x-100";
+        const activeLinkClass = "text-white after:scale-x-100";
+        const inactiveLinkClass = "text-brand-400";
 
         this.innerHTML = `
         <header class="fixed top-0 w-full z-50 glass">
@@ -36,16 +40,16 @@ class Navbar extends HTMLElement {
                 
                 <!-- Links Desktop -->
                 <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-                    <a href="${basePath}index.html" class="transition-colors ${isInicio ? 'text-white' : 'text-brand-400 hover:text-white'}">
+                    <a href="${basePath}index.html" class="${baseLinkClass} ${isInicio ? activeLinkClass : inactiveLinkClass}">
                         Inicio
                     </a>
-                    <a href="${basePath}pages/configuracion.html" class="transition-colors ${isConfig ? 'text-white' : 'text-brand-400 hover:text-white'}">
+                    <a href="${basePath}pages/configuracion.html" class="${baseLinkClass} ${isConfig ? activeLinkClass : inactiveLinkClass}">
                         Configurar
                     </a>
-                    <a href="${basePath}pages/resumen.html" class="transition-colors ${isResumen ? 'text-white' : 'text-brand-400 hover:text-white'}">
+                    <a href="${basePath}pages/resumen.html" class="${baseLinkClass} ${isResumen ? activeLinkClass : inactiveLinkClass}">
                         Resumen
                     </a>
-                    <a href="${basePath}pages/sorteo.html" class="transition-colors ${isSorteo ? 'text-white' : 'text-brand-400 hover:text-white'}">
+                    <a href="${basePath}pages/sorteo.html" class="${baseLinkClass} ${isSorteo ? activeLinkClass : inactiveLinkClass}">
                         Sorteo
                     </a>
                 </nav>
