@@ -2,7 +2,8 @@
 <html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/images/nexgift-logo.svg">
     <title>NexGift | by D&S</title>
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,14 +30,14 @@
         <div class="flex items-center gap-3">
           <div class="w-8 h-8 text-white">
             <img
-              src="assets/images/logo.svg"
+              src="assets/images/nexgift-logo.svg"
               alt="NexGift Logo"
               class="w-full h-full object-contain"
             />
           </div>
           <span class="font-semibold text-lg tracking-tight"
             >NexGift<span class="text-brand-400 font-normal ml-1"
-              >by D&S</span
+              >by D&amp;S</span
             ></span
           >
         </div>
@@ -238,10 +239,20 @@
     <footer
       class="border-t border-white/10 py-8 text-center text-sm text-brand-500 bg-black/50 backdrop-blur-md"
     >
-      <p>NexGift &copy; 2026 &mdash; Creado por D&S</p>
-      <p class="mt-1 font-light text-brand-600">
-        Universidad Autónoma de Aguascalientes &middot; Tecnologías Web
-      </p>
+      <div class="flex flex-col items-center justify-center gap-2">
+        <div class="flex items-center gap-2">
+          <span>NexGift &copy; 2026</span>
+          <span class="text-brand-700">&mdash;</span>
+          <span class="flex items-center gap-1.5">
+            Creado por 
+            <img src="assets/images/d&s-logo.svg" alt="D&S Logo" class="w-6 h-6 inline-block opacity-80" />
+            <span class="font-semibold text-brand-300">D&S</span>
+          </span>
+        </div>
+        <p class="font-light text-brand-600">
+          Universidad Autónoma de Aguascalientes &middot; Tecnologías Web
+        </p>
+      </div>
     </footer>
   </body>
 </html>

@@ -1,0 +1,21 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Minimalist Geometric Gift Box (NexGift) -->
+  
+  <!-- Outer Hexagon / Isometric Box Shape -->
+  <path d="M 50 15 L 85 35 L 85 65 L 50 85 L 15 65 L 15 35 Z" fill="none" stroke="white" stroke-width="4" stroke-linejoin="round"/>
+  
+  <!-- Central Vertical Line (Box Corner) -->
+  <path d="M 50 50 L 50 85" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Top Diagonal Lines (Top Flaps/Ribbon) -->
+  <path d="M 15 35 L 50 50 L 85 35" fill="none" stroke="white" stroke-width="4" stroke-linejoin="round"/>
+  
+  <!-- Ribbon Detail (Top Center) -->
+  <path d="M 50 15 L 50 50" fill="none" stroke="#888888" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Ribbon Loop Left -->
+  <path d="M 50 15 C 30 5 25 25 50 15" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Ribbon Loop Right -->
+  <path d="M 50 15 C 70 5 75 25 50 15" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
