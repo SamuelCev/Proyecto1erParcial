@@ -1,11 +1,132 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sorteo</title>
-  </head>
-  <body>
-  </body>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo - NexGift</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/nexgift-logo.svg">
+</head>
+<body class="bg-black text-brand-50 font-sans min-h-screen flex flex-col dot-matrix">
+
+    <!-- Navbar -->
+    <app-navbar></app-navbar>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center px-6 pt-24 pb-12 w-full max-w-4xl mx-auto z-10">
+
+        <!-- ============================================ -->
+        <!-- VISTA PRE-SORTEO -->
+        <!-- ============================================ -->
+        <div id="view-pre-sorteo" class="w-full animate-fade-in-up">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Sorteo del Intercambio</h1>
+                <p id="sorteo-subtitle" class="text-brand-400 text-lg max-w-2xl mx-auto">Presiona el botón para generar las asignaciones aleatorias.</p>
+            </div>
+
+            <!-- Info rápida del evento -->
+            <div class="glass card-border rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <p id="sorteo-evento-nombre" class="text-white font-semibold text-lg">-</p>
+                        <p class="text-brand-400 text-sm"><span id="sorteo-num-participantes">0</span> participantes · <span id="sorteo-num-exclusiones">0</span> exclusiones</p>
+                    </div>
+                </div>
+                <a href="resumen.html" class="text-sm text-brand-400 hover:text-white transition-colors underline underline-offset-4">Ver resumen</a>
+            </div>
+
+            <!-- Lista de participantes como tarjetas circulares -->
+            <div class="mb-10">
+                <h2 class="text-sm text-brand-500 uppercase tracking-wider mb-4">Participantes</h2>
+                <div id="sorteo-participantes-grid" class="flex flex-wrap gap-3">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+
+            <!-- Botón de Sorteo Grande -->
+            <div class="flex flex-col items-center gap-4 pb-8">
+                <button id="btn-sortear" class="group relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-white/20 via-white/5 to-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative btn-glow bg-white text-black px-12 py-5 rounded-full font-bold text-lg inline-flex items-center gap-3 transition-all hover:scale-105 active:scale-95">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Realizar Sorteo
+                    </div>
+                </button>
+                <p class="text-xs text-brand-600">El resultado se generará aleatoriamente respetando las exclusiones.</p>
+            </div>
+
+            <!-- Error -->
+            <div id="sorteo-error" class="hidden w-full glass border border-red-500/30 text-red-200 rounded-xl p-4 flex items-center gap-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span id="sorteo-error-msg">Error</span>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- ANIMACIÓN DEL SORTEO -->
+        <!-- ============================================ -->
+        <div id="view-animacion" class="w-full hidden">
+            <div class="flex flex-col items-center justify-center min-h-[60vh]">
+                <div id="shuffle-display" class="text-center mb-8">
+                    <p class="text-brand-500 text-sm uppercase tracking-widest mb-4">Mezclando participantes...</p>
+                    <div id="shuffle-names" class="text-5xl md:text-7xl font-bold text-white transition-all duration-100">
+                        <!-- Animación de nombres girando -->
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <span class="w-2.5 h-2.5 bg-white rounded-full animate-bounce" style="animation-delay:0s"></span>
+                    <span class="w-2.5 h-2.5 bg-white rounded-full animate-bounce" style="animation-delay:0.15s"></span>
+                    <span class="w-2.5 h-2.5 bg-white rounded-full animate-bounce" style="animation-delay:0.3s"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- VISTA RESULTADOS -->
+        <!-- ============================================ -->
+        <div id="view-resultados" class="w-full hidden">
+            <div class="text-center mb-10 animate-fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-green-500/10 border border-green-500/30 rounded-full mb-6">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="text-green-400 text-sm font-medium">Sorteo completado</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">¡Resultados del Sorteo!</h1>
+                <p id="resultados-subtitle" class="text-brand-400 text-lg">Aquí están las asignaciones para el intercambio.</p>
+            </div>
+
+            <!-- Grid de resultados -->
+            <div id="resultados-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                <!-- Generado por JS -->
+            </div>
+
+            <!-- Acciones -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pb-8 animate-fade-in-up" style="animation-delay:0.5s; opacity:0">
+                <button id="btn-re-sortear" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    Volver a Sortear
+                </button>
+                <a href="resumen.html" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    Ver Resumen Completo
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/components/navbar.js"></script>
+    <script src="../assets/js/components/footer.js"></script>
+    <script type="module" src="../assets/js/controllers/ui-sorteo.js"></script>
+</body>
 </html>
 

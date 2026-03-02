@@ -1,11 +1,265 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Configuración del intercambio</title>
-  </head>
-  <body>
-  </body>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar - NexGift</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/nexgift-logo.svg">
+</head>
+<body class="bg-black text-brand-50 font-sans min-h-screen flex flex-col dot-matrix">
+
+    <!-- Navbar -->
+    <app-navbar></app-navbar>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center px-6 pt-24 pb-12 w-full max-w-3xl mx-auto z-10 animate-fade-in-up">
+
+        <!-- Progress Bar -->
+        <div class="w-full mb-10">
+            <div class="flex items-center justify-between mb-3">
+                <span id="step-label" class="text-sm text-brand-400 font-medium">Paso 1 de 6</span>
+                <span id="step-percent" class="text-sm text-brand-500">17%</span>
+            </div>
+            <div class="w-full h-1.5 bg-brand-800/50 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-white rounded-full transition-all duration-500 ease-out" style="width:17%"></div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 1: Organizador -->
+        <!-- ============================================ -->
+        <section id="step-1" class="step w-full">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">¿Quién organiza el intercambio?</h1>
+                <p class="text-brand-400 text-lg">Ingresa tu nombre y decide si participas en el sorteo.</p>
+            </div>
+            <div class="glass card-border rounded-2xl p-8 space-y-6">
+                <div>
+                    <label for="input-organizador" class="block text-sm font-medium text-brand-300 mb-2">Tu nombre</label>
+                    <input id="input-organizador" type="text" placeholder="Ej: Gina" maxlength="40"
+                        class="w-full bg-brand-900/50 border border-brand-700/50 rounded-xl px-4 py-3 text-white placeholder-brand-600 focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-colors">
+                </div>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                    <input id="check-participa" type="checkbox" checked
+                        class="w-5 h-5 rounded border-brand-600 bg-brand-800 text-white focus:ring-white/30 accent-white cursor-pointer">
+                    <span class="text-brand-300 group-hover:text-white transition-colors text-sm">Inclúyeme (el organizador) en el sorteo</span>
+                </label>
+            </div>
+            <div class="flex justify-end mt-8">
+                <button id="btn-next-1" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    Continuar
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- STEP 2: Participantes -->
+        <!-- ============================================ -->
+        <section id="step-2" class="step w-full hidden">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">¿Con quién vas a sortear?</h1>
+                <p class="text-brand-400 text-lg">Agrega los nombres de los participantes. No hay límite.</p>
+            </div>
+            <div class="glass card-border rounded-2xl p-8 space-y-6">
+                <!-- Lista de participantes -->
+                <div id="lista-participantes" class="space-y-3 max-h-72 overflow-y-auto pr-1">
+                    <!-- Los inputs se generan dinámicamente por JS -->
+                </div>
+                <button id="btn-add-participante" class="flex items-center gap-2 text-sm text-brand-400 hover:text-white transition-colors group">
+                    <span class="w-8 h-8 rounded-full border border-brand-700 flex items-center justify-center group-hover:border-white/40 group-hover:bg-white/5 transition-colors">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m-7-7h14"/></svg>
+                    </span>
+                    Añadir participante
+                </button>
+
+                <!-- Drag & Drop CSV -->
+                <div class="border-t border-brand-800/50 pt-6">
+                    <p class="text-xs text-brand-500 uppercase tracking-wider mb-3">O carga un archivo CSV</p>
+                    <div id="csv-drop-zone"
+                        class="border-2 border-dashed border-brand-700/50 rounded-xl p-6 text-center cursor-pointer hover:border-white/30 hover:bg-white/[0.02] transition-colors group">
+                        <svg class="w-8 h-8 mx-auto mb-2 text-brand-600 group-hover:text-brand-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                        <p class="text-sm text-brand-400">Arrastra tu archivo <strong class="text-brand-300">.csv</strong> aquí</p>
+                        <p class="text-xs text-brand-600 mt-1">o haz clic para seleccionar</p>
+                        <input id="csv-file-input" type="file" accept=".csv" class="hidden">
+                    </div>
+                    <p id="csv-feedback" class="text-xs text-brand-500 mt-2 hidden"></p>
+                </div>
+            </div>
+            <div class="flex justify-between mt-8">
+                <button id="btn-prev-2" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
+                    ← Atrás
+                </button>
+                <button id="btn-next-2" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    Continuar
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- STEP 3: Exclusiones -->
+        <!-- ============================================ -->
+        <section id="step-3" class="step w-full hidden">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">¿Quieres excluir ciertos sorteos?</h1>
+                <p class="text-brand-400 text-lg">Usa exclusiones para evitar que ciertas personas saquen nombres específicos.</p>
+            </div>
+            <div class="glass card-border rounded-2xl p-8 space-y-4">
+                <!-- Toggle opciones -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button id="btn-no-exclusiones" class="flex-1 px-5 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium text-left">
+                        No establecer exclusiones
+                    </button>
+                    <button id="btn-si-exclusiones" class="flex-1 px-5 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium text-left">
+                        Establecer exclusiones
+                    </button>
+                </div>
+
+                <!-- Panel de exclusiones (oculto por defecto) -->
+                <div id="panel-exclusiones" class="hidden space-y-4 pt-4 border-t border-brand-800/50">
+                    <div id="exclusiones-list" class="space-y-5">
+                        <!-- Generado por JS: por cada participante, un dropdown para seleccionar a quién excluir -->
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between mt-8">
+                <button id="btn-prev-3" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
+                    ← Atrás
+                </button>
+                <button id="btn-next-3" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    Continuar
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- STEP 4: Tipo de Evento -->
+        <!-- ============================================ -->
+        <section id="step-4" class="step w-full hidden">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">¿Para qué vas a sortear nombres?</h1>
+                <p class="text-brand-400 text-lg">Selecciona el tipo de evento o escribe tu propia celebración.</p>
+            </div>
+            <div class="glass card-border rounded-2xl p-8 space-y-6">
+                <div id="event-chips" class="flex flex-wrap gap-3">
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Día de San Valentín">Día de San Valentín</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Intercambio">Intercambio</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Navidad">Navidad</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Día del Niño">Día del Niño</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Día de la Madre">Día de la Madre</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Día del Padre">Día del Padre</button>
+                </div>
+                <div id="more-events" class="hidden flex flex-wrap gap-3">
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Posada">Posada</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Cumpleaños">Cumpleaños</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Amigo Secreto">Amigo Secreto</button>
+                    <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Graduación">Graduación</button>
+                </div>
+                <button id="btn-show-more-events" class="text-sm text-brand-400 hover:text-white transition-colors font-medium">Mostrar más</button>
+
+                <!-- Nombre personalizado del evento -->
+                <div class="border-t border-brand-800/50 pt-6">
+                    <label for="input-nombre-evento" class="block text-sm font-medium text-brand-300 mb-2">Nombre de la celebración</label>
+                    <input id="input-nombre-evento" type="text" placeholder="Ej: Intercambio 2026" maxlength="60"
+                        class="w-full bg-brand-900/50 border border-brand-700/50 rounded-xl px-4 py-3 text-white placeholder-brand-600 focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-colors">
+                </div>
+            </div>
+            <div class="flex justify-between mt-8">
+                <button id="btn-prev-4" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
+                    ← Atrás
+                </button>
+                <button id="btn-next-4" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    Continuar
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- STEP 5: Fecha -->
+        <!-- ============================================ -->
+        <section id="step-5" class="step w-full hidden">
+            <div class="text-center mb-8">
+                <h1 id="fecha-titulo" class="text-3xl md:text-4xl font-bold tracking-tight mb-3">¿Cuándo se celebra?</h1>
+                <p class="text-brand-400 text-lg">Elige la fecha de la celebración.</p>
+            </div>
+            <div class="glass card-border rounded-2xl p-8 space-y-6">
+                <!-- Fechas sugeridas -->
+                <div id="fechas-sugeridas" class="flex flex-col gap-3">
+                    <!-- Generadas por JS -->
+                </div>
+                <div>
+                    <label for="input-fecha" class="block text-sm font-medium text-brand-300 mb-2">Fecha de la celebración</label>
+                    <input id="input-fecha" type="date"
+                        class="w-full bg-brand-900/50 border border-brand-700/50 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-colors [color-scheme:dark]">
+                </div>
+            </div>
+            <div class="flex justify-between mt-8">
+                <button id="btn-prev-5" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
+                    ← Atrás
+                </button>
+                <button id="btn-next-5" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    Continuar
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- STEP 6: Presupuesto -->
+        <!-- ============================================ -->
+        <section id="step-6" class="step w-full hidden">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">¿Cuánto deberían gastar los participantes?</h1>
+                <p class="text-brand-400 text-lg">Define un presupuesto aproximado para los regalos.</p>
+            </div>
+            <div class="glass card-border rounded-2xl p-8 space-y-6">
+                <div id="budget-chips" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="500">$500</button>
+                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="300">$300</button>
+                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="200">$200</button>
+                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="150">$150</button>
+                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="100">$100</button>
+                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="custom">Otro ✏️</button>
+                </div>
+                <div>
+                    <label for="input-presupuesto" class="block text-sm font-medium text-brand-300 mb-2">Presupuesto</label>
+                    <input id="input-presupuesto" type="number" min="0" placeholder="Introduce un importe de regalo..."
+                        class="w-full bg-brand-900/50 border border-brand-700/50 rounded-xl px-4 py-3 text-white placeholder-brand-600 focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-colors">
+                </div>
+            </div>
+            <div class="flex justify-between mt-8">
+                <button id="btn-prev-6" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
+                    ← Atrás
+                </button>
+                <button id="btn-finish" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                    Finalizar Configuración
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Toast de errores -->
+        <div id="toast-error" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-500/90 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg transition-all duration-300 translate-y-20 opacity-0 pointer-events-none z-50 flex items-center gap-2">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/></svg>
+            <span id="toast-msg">Error</span>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/components/navbar.js"></script>
+    <script src="../assets/js/components/footer.js"></script>
+    <script type="module" src="../assets/js/controllers/ui-configuracion.js"></script>
+</body>
 </html>
 
