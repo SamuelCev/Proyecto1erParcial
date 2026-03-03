@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorteo - NexGift</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind.config.js"></script>
     <link rel="stylesheet" href="../assets/css/styles.css">
@@ -49,11 +50,11 @@
                 </div>
             </div>
 
-            <!-- Botón de Sorteo Grande -->
+            <!-- Botón de Sorteo -->
             <div class="flex flex-col items-center gap-4 pb-8">
                 <button id="btn-sortear" class="group relative">
                     <div class="absolute -inset-1 bg-gradient-to-r from-white/20 via-white/5 to-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="relative btn-glow bg-white text-black px-12 py-5 rounded-full font-bold text-lg inline-flex items-center gap-3 transition-all hover:scale-105 active:scale-95">
+                    <div class="relative btn-glow bg-white text-black px-12 py-5 rounded-full font-bold text-lg inline-flex items-center gap-3 transition-all active:scale-95">
                         Realizar Sorteo
                     </div>
                 </button>
@@ -61,7 +62,7 @@
             </div>
 
             <!-- Error -->
-            <div id="sorteo-error" class="hidden w-full glass border border-red-500/30 text-red-200 rounded-xl p-4 flex items-center gap-3">
+            <div id="sorteo-error" class="!hidden w-full glass border border-red-500/30 text-red-200 rounded-xl p-4">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 <span id="sorteo-error-msg">Error</span>
             </div>
@@ -105,14 +106,18 @@
             </div>
 
             <!-- Acciones -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pb-8 animate-fade-in-up" style="animation-delay:0.5s; opacity:0">
-                <button id="btn-re-sortear" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50 flex items-center gap-2">
+            <div class="flex flex-col md:flex-row items-stretch md:items-center justify-center gap-3 md:gap-4 pb-8 animate-fade-in-up max-w-md md:max-w-none mx-auto" style="animation-delay:0.5s; opacity:0">
+                <button id="btn-re-sortear" class="w-full md:w-auto px-6 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50 flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                     Volver a Sortear
                 </button>
-                <a href="resumen.html" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                <a href="resumen.html" class="w-full md:w-auto btn-glow bg-white text-black px-6 py-3 rounded-full font-medium flex items-center justify-center gap-2 transition-transform active:scale-95">
                     Ver Resumen Completo
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </a>
+                <a href="configuracion.html" id="nuevo-intercambio-sorteo-btn" class="w-full md:w-auto px-6 py-3 rounded-full text-white font-medium hover:text-brand-200 transition-colors border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Nuevo Intercambio
                 </a>
             </div>
         </div>

@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAddParticipante = document.getElementById('btn-add-participante');
     const csvDropZone = document.getElementById('csv-drop-zone');
     const csvFileInput = document.getElementById('csv-file-input');
-    const csvFeedback = document.getElementById('csv-feedback');
 
     // Step 3
     const btnNoExclusiones = document.getElementById('btn-no-exclusiones');
@@ -60,18 +59,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toast
     const toastError = document.getElementById('toast-error');
     const toastMsg = document.getElementById('toast-msg');
+    const toastSuccess = document.getElementById('toast-success');
+    const toastSuccessMsg = document.getElementById('toast-success-msg');
 
     // ============================================
     // UTILIDADES
     // ============================================
     function showToast(message) {
         toastMsg.textContent = message;
-        toastError.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-        toastError.classList.add('translate-y-0', 'opacity-100');
+        toastError.classList.remove('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+        toastError.classList.add('translate-x-0', 'opacity-100');
         setTimeout(() => {
-            toastError.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-            toastError.classList.remove('translate-y-0', 'opacity-100');
-        }, 3000);
+            toastError.classList.add('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+            toastError.classList.remove('translate-x-0', 'opacity-100');
+        }, 4000);
+    }
+
+    function showSuccessToast(message) {
+        toastSuccessMsg.textContent = message;
+        toastSuccess.classList.remove('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+        toastSuccess.classList.add('translate-x-0', 'opacity-100');
+        setTimeout(() => {
+            toastSuccess.classList.add('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+            toastSuccess.classList.remove('translate-x-0', 'opacity-100');
+        }, 4000);
     }
 
     function goToStep(step) {
@@ -94,6 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         stepLabel.textContent = `Paso ${currentStep} de ${TOTAL_STEPS}`;
         stepPercent.textContent = pct + '%';
 
+        // Guardar el paso actual en sessionStorage
+        sessionStorage.setItem('currentConfigStep', currentStep);
+
         // Scroll al top
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -107,6 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
         inputOrganizador.value = dataExistente.evento.organizador;
     }
     checkParticipa.checked = dataExistente.evento.organizadorParticipa !== false;
+
+    // Restaurar el paso actual si existe
+    const savedStep = sessionStorage.getItem('currentConfigStep');
+    if (savedStep) {
+        const stepNum = parseInt(savedStep);
+        if (stepNum > 1 && stepNum <= TOTAL_STEPS) {
+            // Cargar datos necesarios para cada paso
+            if (stepNum >= 2) renderParticipantes();
+            if (stepNum >= 3) renderExclusiones();
+            goToStep(stepNum);
+        }
+    }
 
     document.getElementById('btn-next-1').addEventListener('click', () => {
         const nombre = inputOrganizador.value.trim();
@@ -189,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (nombre) {
                     const result = Model.agregarParticipante(nombre);
                     if (result.success) {
+                        e.target.value = ''; // Limpiar el input
                         renderParticipantes();
                         // Focus en el nuevo input vacío
                         setTimeout(() => {
@@ -197,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }, 50);
                     } else {
                         showToast(result.message);
+                        e.target.value = ''; // Limpiar también en caso de error
                     }
                 }
             };
@@ -298,9 +326,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            csvFeedback.classList.remove('hidden');
-            csvFeedback.textContent = `✓ ${agregados} participantes agregados${duplicados > 0 ? `, ${duplicados} omitidos (duplicados)` : ''}`;
-            csvFeedback.className = 'text-xs mt-2 text-green-400';
+            const mensaje = `✓ ${agregados} participantes agregados${duplicados > 0 ? `, ${duplicados} omitidos (duplicados)` : ''}`;
+            showSuccessToast(mensaje);
             renderParticipantes();
         };
         reader.readAsText(file);
@@ -488,8 +515,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mostrar más eventos
     btnShowMoreEvents.addEventListener('click', () => {
-        moreEvents.classList.toggle('hidden');
-        btnShowMoreEvents.textContent = moreEvents.classList.contains('hidden') ? 'Mostrar más' : 'Mostrar menos';
+        const isHidden = moreEvents.classList.contains('!hidden');
+        if (isHidden) {
+            moreEvents.classList.remove('!hidden');
+            moreEvents.classList.add('flex', 'flex-wrap', 'gap-3');
+        } else {
+            moreEvents.classList.add('!hidden');
+            moreEvents.classList.remove('flex', 'flex-wrap', 'gap-3');
+        }
+        btnShowMoreEvents.textContent = isHidden ? 'Mostrar menos' : 'Mostrar más';
     });
 
     // Si escribe un nombre personalizado, deseleccionar chips

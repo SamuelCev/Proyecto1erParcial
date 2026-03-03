@@ -75,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showError(msg) {
-        sorteoError.classList.remove('hidden');
+        sorteoError.classList.remove('!hidden');
+        sorteoError.classList.add('flex', 'items-center', 'gap-3');
         sorteoErrorMsg.textContent = msg;
     }
 
@@ -148,9 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="text-brand-300 truncate">${par.recibe}</span>
                     </div>
                 </div>
-                <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-lg flex-shrink-0">
-                    🎁
-                </div>
             `;
             resultadosGrid.appendChild(card);
         });
@@ -168,7 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Ocultar errores previos
-        sorteoError.classList.add('hidden');
+        sorteoError.classList.add('!hidden');
+        sorteoError.classList.remove('flex', 'items-center', 'gap-3');
 
         // Animación
         await animarSorteo(data.participantes);
@@ -191,9 +190,18 @@ document.addEventListener('DOMContentLoaded', () => {
         Storage.guardarResultados([]);
         viewResultados.classList.add('hidden');
         viewPreSorteo.classList.remove('hidden');
-        sorteoError.classList.add('hidden');
+        sorteoError.classList.add('!hidden');
+        sorteoError.classList.remove('flex', 'items-center', 'gap-3');
         cargarDatos();
     });
+
+    // Botón Nuevo Intercambio - resetear al paso 1
+    const btnNuevoIntercambio = document.getElementById('nuevo-intercambio-sorteo-btn');
+    if (btnNuevoIntercambio) {
+        btnNuevoIntercambio.addEventListener('click', () => {
+            sessionStorage.setItem('currentConfigStep', '1');
+        });
+    }
 
     // ============================================
     // INIT

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurar - NexGift</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../assets/js/tailwind.config.js"></script>
     <link rel="stylesheet" href="../assets/css/styles.css">
@@ -50,7 +51,7 @@
                 </label>
             </div>
             <div class="flex justify-end mt-8">
-                <button id="btn-next-1" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                <button id="btn-next-1" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform active:scale-95">
                     Continuar
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
@@ -87,14 +88,13 @@
                         <p class="text-xs text-brand-600 mt-1">o haz clic para seleccionar</p>
                         <input id="csv-file-input" type="file" accept=".csv" class="hidden">
                     </div>
-                    <p id="csv-feedback" class="text-xs text-brand-500 mt-2 hidden"></p>
                 </div>
             </div>
             <div class="flex justify-between mt-8">
                 <button id="btn-prev-2" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
                     ← Atrás
                 </button>
-                <button id="btn-next-2" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                <button id="btn-next-2" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform active:scale-95">
                     Continuar
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
@@ -131,7 +131,7 @@
                 <button id="btn-prev-3" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
                     ← Atrás
                 </button>
-                <button id="btn-next-3" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                <button id="btn-next-3" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform active:scale-95">
                     Continuar
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
@@ -155,7 +155,7 @@
                     <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Día de la Madre">Día de la Madre</button>
                     <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Día del Padre">Día del Padre</button>
                 </div>
-                <div id="more-events" class="hidden flex flex-wrap gap-3">
+                <div id="more-events" class="!hidden">
                     <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Posada">Posada</button>
                     <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Cumpleaños">Cumpleaños</button>
                     <button class="event-chip px-4 py-2.5 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="Amigo Secreto">Amigo Secreto</button>
@@ -174,7 +174,7 @@
                 <button id="btn-prev-4" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
                     ← Atrás
                 </button>
-                <button id="btn-next-4" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                <button id="btn-next-4" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform active:scale-95">
                     Continuar
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
@@ -204,7 +204,7 @@
                 <button id="btn-prev-5" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
                     ← Atrás
                 </button>
-                <button id="btn-next-5" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                <button id="btn-next-5" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform active:scale-95">
                     Continuar
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
@@ -226,7 +226,7 @@
                     <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="200">$200</button>
                     <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="150">$150</button>
                     <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="100">$100</button>
-                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="custom">Otro ✏️</button>
+                    <button class="budget-chip px-4 py-3 rounded-xl border border-brand-700/50 text-brand-300 hover:text-white hover:border-white/30 transition-colors text-sm font-medium" data-value="custom">Otro</button>
                 </div>
                 <div>
                     <label for="input-presupuesto" class="block text-sm font-medium text-brand-300 mb-2">Presupuesto</label>
@@ -238,20 +238,26 @@
                 <button id="btn-prev-6" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
                     ← Atrás
                 </button>
-                <button id="btn-finish" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                <button id="btn-finish" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform active:scale-95">
                     Finalizar Configuración
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
             </div>
         </section>
 
-        <!-- Toast de errores -->
-        <div id="toast-error" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-500/90 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg transition-all duration-300 translate-y-20 opacity-0 pointer-events-none z-50 flex items-center gap-2">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/></svg>
-            <span id="toast-msg">Error</span>
-        </div>
-
     </main>
+
+    <!-- Toast de errores -->
+    <div id="toast-error" class="fixed top-20 right-4 md:right-6 bg-red-500/90 backdrop-blur-sm text-white px-4 py-3 md:px-5 rounded-xl text-sm font-medium shadow-lg shadow-red-500/20 transition-all duration-300 translate-x-[120%] opacity-0 pointer-events-none z-[100] flex items-center gap-3 max-w-[calc(100vw-2rem)] md:max-w-md">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span id="toast-msg">Error</span>
+    </div>
+
+    <!-- Toast de éxito -->
+    <div id="toast-success" class="fixed top-20 right-4 md:right-6 bg-green-500/90 backdrop-blur-sm text-white px-4 py-3 md:px-5 rounded-xl text-sm font-medium shadow-lg shadow-green-500/20 transition-all duration-300 translate-x-[120%] opacity-0 pointer-events-none z-[100] flex items-center gap-3 max-w-[calc(100vw-2rem)] md:max-w-md">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span id="toast-success-msg">Success</span>
+    </div>
 
     <!-- Footer -->
     <app-footer></app-footer>
@@ -262,4 +268,3 @@
     <script type="module" src="../assets/js/controllers/ui-configuracion.js"></script>
 </body>
 </html>
-

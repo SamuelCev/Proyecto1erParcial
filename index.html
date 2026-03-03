@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="assets/images/nexgift-logo.svg">
     <title>NexGift | by D&S</title>
-    <!-- Tailwind CSS (CDN) -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuración Global -->
     <script src="assets/js/tailwind.config.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -54,6 +51,7 @@
         >
           <a
             href="pages/configuracion.html"
+            id="empezar-configurar-btn"
             class="btn-glow w-full sm:w-auto px-8 py-3.5 bg-white text-black rounded-full font-medium flex items-center justify-center gap-2"
           >
             Empezar a Configurar
@@ -176,5 +174,17 @@
     <!-- Footer -->
     <app-footer></app-footer>
     <script src="assets/js/components/footer.js"></script>
+
+    <!-- Script para resetear configuración -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const empezarBtn = document.getElementById('empezar-configurar-btn');
+        if (empezarBtn) {
+          empezarBtn.addEventListener('click', () => {
+            sessionStorage.setItem('currentConfigStep', '1');
+          });
+        }
+      });
+    </script>
   </body>
 </html>

@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const numPart = data.participantes.length;
     ui.totalPart.innerText = numPart;
     
-    // Llenar "Badges" (Tarjetas chiquitas) solo con los primeros 5 participantes para no romper el diseño
+    // Llenar "Badges"
     ui.listaPart.innerHTML = '';
     const MAX_MOSTRAR = 5;
     
@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (tieneErrores) {
-        ui.errorBanner.classList.remove('hidden');
+        ui.errorBanner.classList.remove('!hidden');
+        ui.errorBanner.classList.add('flex', 'items-center', 'gap-3');
         ui.btnSorteo.classList.add('opacity-50', 'pointer-events-none');
     }
 });

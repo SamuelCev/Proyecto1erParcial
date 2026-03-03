@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resumen - NexGift</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tema y Configuración -->
     <script src="../assets/js/tailwind.config.js"></script>
     <link rel="stylesheet" href="../assets/css/styles.css">
-
-    <!-- Fuentes (Geist / Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="../assets/images/nexgift-logo.svg">
 </head>
@@ -29,8 +24,8 @@
             <p class="text-brand-400 text-lg max-w-2xl mx-auto">Verifica que todo esté correcto antes de realizar el sorteo.</p>
         </div>
 
-        <!-- Banner de Error (Oculto por defecto) -->
-        <div id="res-error" class="hidden w-full max-w-3xl glass border border-red-500/30 text-red-200 rounded-xl p-4 mb-8 flex items-center gap-3">
+        <!-- Banner de Error -->
+        <div id="res-error" class="!hidden w-full max-w-3xl glass border border-red-500/30 text-red-200 rounded-xl p-4 mb-8">
             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             <span id="res-error-msg">Aún faltan datos para realizar el sorteo.</span>
         </div>
@@ -114,7 +109,7 @@
             <a href="configuracion.html" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
                 Editar Datos
             </a>
-            <a href="sorteo.html" id="btn-sorteo" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+            <a href="sorteo.html" id="btn-sorteo" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform active:scale-95">
                 Realizar Sorteo
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
             </a>

@@ -55,7 +55,7 @@ class Navbar extends HTMLElement {
                 </nav>
                 
                 <!-- Botón de acción principal (Desktop) -->
-                <a href="${basePath}pages/configuracion.html" class="hidden md:flex bg-white text-black px-4 py-1.5 rounded-full text-sm font-medium hover:bg-brand-200 transition-colors">
+                <a href="${basePath}pages/configuracion.html" id="nuevo-intercambio-btn" class="hidden md:flex bg-white text-black px-4 py-1.5 rounded-full text-sm font-medium hover:bg-brand-200 transition-colors">
                     Nuevo Intercambio
                 </a>
                 
@@ -74,6 +74,9 @@ class Navbar extends HTMLElement {
                     <a href="${basePath}pages/configuracion.html" class="${isConfig ? 'text-white' : 'text-brand-400'}">Configurar</a>
                     <a href="${basePath}pages/resumen.html" class="${isResumen ? 'text-white' : 'text-brand-400'}">Resumen</a>
                     <a href="${basePath}pages/sorteo.html" class="${isSorteo ? 'text-white' : 'text-brand-400'}">Sorteo</a>
+                    <a href="${basePath}pages/configuracion.html" id="nuevo-intercambio-mobile-btn" class="bg-white text-black px-4 py-2.5 rounded-full text-center font-medium hover:bg-brand-200 transition-colors">
+                        Nuevo Intercambio
+                    </a>
                 </nav>
             </div>
         </header>
@@ -86,6 +89,22 @@ class Navbar extends HTMLElement {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+
+        // Resetear al paso 1 cuando se hace clic en "Nuevo Intercambio"
+        const nuevoIntercambioBtn = this.querySelector('#nuevo-intercambio-btn');
+        if (nuevoIntercambioBtn) {
+            nuevoIntercambioBtn.addEventListener('click', (e) => {
+                sessionStorage.setItem('currentConfigStep', '1');
+            });
+        }
+
+        // Resetear al paso 1 en el botón móvil
+        const nuevoIntercambioMobileBtn = this.querySelector('#nuevo-intercambio-mobile-btn');
+        if (nuevoIntercambioMobileBtn) {
+            nuevoIntercambioMobileBtn.addEventListener('click', (e) => {
+                sessionStorage.setItem('currentConfigStep', '1');
+            });
+        }
     }
 }
 
