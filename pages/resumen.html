@@ -25,7 +25,7 @@
     <main class="flex-grow flex flex-col items-center justify-center px-6 pt-24 pb-12 w-full max-w-5xl mx-auto z-10 animate-fade-in-up">
         
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Resumen del Evento</h1>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">Resumen del Evento</h1>
             <p class="text-brand-400 text-lg max-w-2xl mx-auto">Verifica que todo esté correcto antes de realizar el sorteo.</p>
         </div>
 
@@ -36,7 +36,7 @@
         </div>
 
         <!-- Grid de Resumen -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full mb-12">
             
             <!-- Detalles -->
             <div class="glass card-border rounded-2xl p-6 relative overflow-hidden group">
@@ -110,11 +110,11 @@
         </div>
 
         <!-- Botón de acción -->
-        <div class="mt-4 pb-12 w-full flex justify-center gap-4">
-            <a href="configuracion.html" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50">
+        <div class="mt-4 pb-12 w-full flex flex-col sm:flex-row justify-center gap-4">
+            <a href="configuracion.html" class="px-8 py-3 rounded-full text-brand-300 font-medium hover:text-white transition-colors border border-brand-800 hover:border-brand-600 bg-black/50 w-full sm:w-auto text-center">
                 Editar Datos
             </a>
-            <a href="sorteo.html" id="btn-sorteo" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+            <a href="sorteo.html" id="btn-sorteo" class="btn-glow bg-white text-black px-8 py-3 rounded-full font-medium inline-flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 w-full sm:w-auto">
                 Realizar Sorteo
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
             </a>
