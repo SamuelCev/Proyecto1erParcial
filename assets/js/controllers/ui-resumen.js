@@ -60,11 +60,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -- Llenar Exclusiones --
+    const listaExcl = document.getElementById('res-lista-excl');
     let numReglas = 0;
     for (const owner in data.exclusiones) {
-        numReglas += data.exclusiones[owner].length; // Contar reglas de cada participante
+        numReglas += data.exclusiones[owner].length;
     }
     ui.totalExcl.innerText = numReglas;
+
+    // Desglose de exclusiones: quién excluyó a quién
+    listaExcl.innerHTML = '';
+    if (numReglas > 0) {
+        for (const owner in data.exclusiones) {
+            data.exclusiones[owner].forEach(excluido => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center gap-2 flex-wrap';
+                row.innerHTML = `
+                    <span class="px-3 py-1 bg-brand-800/40 rounded-md border border-brand-700/50 text-xs tracking-wide text-white">${owner}</span>
+                    <span class="text-brand-500 text-xs">→</span>
+                    <span class="px-3 py-1 bg-brand-800/40 rounded-md border border-red-500/30 text-xs tracking-wide text-red-300">${excluido}</span>
+                `;
+                listaExcl.appendChild(row);
+            });
+        }
+    } else {
+        listaExcl.innerHTML = '<span class="text-brand-600 italic">No hay exclusiones registradas.</span>';
+    }
 
     // 3. Validar estado para permitir avanzar al Sorteo
     let tieneErrores = false;
